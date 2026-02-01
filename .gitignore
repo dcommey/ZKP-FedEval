@@ -1,0 +1,104 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyd
+*.pyo
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv/
+pip-wheel-metadata/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.fleet/
+.project
+.pydevproject
+
+# Project specific
+results/
+zkp_artifacts/
+zkp_setup/
+analysis_output/
+data/MNIST/
+data/UCI HAR Dataset/
+data/__MACOSX/
+data/**/__MACOSX/
+data/**/*.zip
+*.zkey
+*.r1cs
+*.sym
+*.ptau
+proof_*.json
+*.wtns
+*.wasm
+*.cpp
+*_js/
+
+# Node/npm
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Plots and analysis
+*.pdf
+*.png
+*.tex
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+analysis_output/#*
+analysis_output/.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+*.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Misc
+*.tmp
+*.bak
+*.orig
