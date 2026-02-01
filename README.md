@@ -3,6 +3,23 @@
 This repository contains the reference implementation for our ZKP-based federated evaluation experiments.
 It includes data loading, centralized server training (for an initial model), client-side evaluation, Groth16 proof generation/verification via Circom + snarkjs, and analysis scripts.
 
+## Paper
+If you use this codebase, please cite:
+
+- https://arxiv.org/abs/2507.11649
+
+```bibtex
+@misc{commey2025zkpfedevalverifiableprivacypreservingfederated,
+	title={ZKP-FedEval: Verifiable and Privacy-Preserving Federated Evaluation using Zero-Knowledge Proofs},
+	author={Daniel Commey and Benjamin Appiah and Griffith S. Klogo and Garth V. Crosby},
+	year={2025},
+	eprint={2507.11649},
+	archivePrefix={arXiv},
+	primaryClass={cs.LG},
+	url={https://arxiv.org/abs/2507.11649},
+}
+```
+
 ## What the current ZKP proves
 The included Circom circuit proves a **threshold statement** about a client-provided loss value:
 
