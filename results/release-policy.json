@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "name": "selective_withholding_cannot_certify_release",
+      "passed": true
+    },
+    {
+      "name": "complete_failing_cohort_rejected",
+      "passed": true
+    },
+    {
+      "name": "exact_required_count_certifies_release_with_unresolved_batches",
+      "passed": true
+    },
+    {
+      "name": "insufficient_known_passes_remain_inconclusive",
+      "passed": true
+    },
+    {
+      "name": "empty_response_set_remains_inconclusive",
+      "passed": true
+    },
+    {
+      "name": "invalid_or_unregistered_results_do_not_shrink_cohort",
+      "passed": true
+    },
+    {
+      "name": "duplicate_or_changed_outcome_cannot_inflate_pass_count",
+      "passed": true
+    },
+    {
+      "name": "cohort_outcomes_and_finalization_survive_restart",
+      "passed": true
+    },
+    {
+      "name": "cohort_or_requirement_cannot_change_on_restart",
+      "passed": true
+    },
+    {
+      "name": "different_model_or_round_request_cannot_reuse_outcome_ledger",
+      "passed": true
+    },
+    {
+      "name": "invalid_enrollment_or_release_requirement_refused",
+      "passed": true
+    },
+    {
+      "name": "all_small_cohort_decisions_agree_with_every_possible_completion",
+      "passed": true
+    }
+  ],
+  "withholding_example": {
+    "request_id": "model-cutoff-round-1",
+    "registered": 10,
+    "required_passes": 8,
+    "positive": 2,
+    "negative": 0,
+    "unresolved": 8,
+    "respondent_positive_fraction": 1,
+    "coverage": 0.2,
+    "lower_bound": 0.2,
+    "upper_bound": 1,
+    "finalized": false,
+    "decision": "inconclusive"
+  },
+  "guarantee": "fixed registered-cohort integer release criterion; missing and invalid remain unresolved",
+  "precondition": "recordVerified receives only cryptographically verified outcomes matching the registered request; protected serialized ledger"
+}

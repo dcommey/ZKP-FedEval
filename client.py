@@ -13,6 +13,7 @@ class Client:
         self.data_loader = data_loader
         self.device = device
         self.model = None
+        self.last_metrics = {}
         self.loss_func = F.cross_entropy  # Using sum reduction for precise average calculation
 
     def set_model(self, global_model):
@@ -67,6 +68,8 @@ class Client:
 
         # 1. Perform local evaluation to get the single average loss value
         local_loss = self.evaluate_locally()
+        self.last_metrics = {'evaluation_s':time.time()-start_time,
+                             'witness_and_proving_s':None,'status':'no_proof'}
 
         # Handle potential infinite loss from evaluation issues
         if local_loss == float('inf'):
@@ -108,6 +111,8 @@ class Client:
                 public_inputs_dict, # Pass the public dictionary
                 private_inputs_dict # Pass the private dictionary
             )
+            self.last_metrics['witness_and_proving_s'] = prove_time
+            self.last_metrics['status'] = 'submitted'
             # Note: prove_time from generate_zkp is just the snarkjs part, total_time includes eval etc.
         except Exception as e:
             # Catch errors from run_command within generate_zkp or other issues
@@ -122,8 +127,10 @@ class Client:
         if proof_result_tuple:
             # proof_result_tuple is (proof_obj, generated_public_inputs_list)
             # We need to return the *original* public_inputs_list for the server verification
-            proof_obj, _ = proof_result_tuple # Discard the list from snarkjs output
-            return (proof_obj, public_inputs_list), proof_size_bytes, total_time # Return the list prepared earlier
+            proof_obj, generated_public_inputs = proof_result_tuple
+            if generated_public_inputs != public_inputs_list:
+                raise ValueError("Generated public signals differ from the requested statement")
+            return (proof_obj, generated_public_inputs), proof_size_bytes, total_time
         else:
             print(f"Client {self.client_id}: Failed to generate ZKP proof.", file=sys.stderr)
             return None, 0, total_time

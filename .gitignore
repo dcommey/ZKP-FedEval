@@ -48,9 +48,17 @@ pip-wheel-metadata/
 .pydevproject
 
 # Project specific
-results/
+# Measured results are public; logs and scratch output are not.
+results/*
+!results/*.json
+!results/*.txt
+!results/committed-rerun/
+!results/utility-study/
 zkp_artifacts/
-zkp_setup/
+# Keep only the public setup files: verification keys and the setup manifest.
+zkp_setup/*/*
+!zkp_setup/*/verification_key.json
+!zkp_setup/*/setup_manifest.json
 analysis_output/
 data/MNIST/
 data/UCI HAR Dataset/
@@ -62,6 +70,7 @@ data/**/*.zip
 *.sym
 *.ptau
 proof_*.json
+!results/*/proof_measurements.json
 *.wtns
 *.wasm
 *.cpp
@@ -69,7 +78,6 @@ proof_*.json
 
 # Node/npm
 node_modules/
-package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -102,3 +110,9 @@ $RECYCLE.BIN/
 *.tmp
 *.bak
 *.orig
+
+# Private working files: not part of the public release
+paper/
+review-notes/
+START_HERE.md
+tmp/

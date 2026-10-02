@@ -244,6 +244,14 @@ class Server:
             "round_nonce": round_nonce, # Include for reference
             "constraint_count": self.constraint_count # Add constraint count
         }
+        evaluation_times = [c.last_metrics['evaluation_s'] for c in self.clients
+                            if c and 'evaluation_s' in c.last_metrics]
+        proving_times = [c.last_metrics['witness_and_proving_s'] for c in self.clients
+                        if c and c.last_metrics.get('witness_and_proving_s') is not None]
+        results['avg_model_evaluation_time_s'] = sum(evaluation_times)/len(evaluation_times) if evaluation_times else None
+        results['avg_witness_and_proving_time_s'] = sum(proving_times)/len(proving_times) if proving_times else None
+        results['avg_client_processing_time_s'] = results['avg_client_proof_gen_time_s']
+        results['guarantee'] = 'supplied-loss threshold only; not verified model evaluation'
 
         # Print summary to stderr
         print(f"Total Clients Configured: {results['num_total_clients']}", file=sys.stderr)

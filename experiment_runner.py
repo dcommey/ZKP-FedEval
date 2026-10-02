@@ -57,6 +57,7 @@ def main():
                         help='Use non-IID data distribution')
     parser.add_argument('--train-epochs', type=int, default=1,
                         help='Number of initial server training epochs')
+    parser.add_argument('--server-train-fraction', type=float, default=0.3)
     parser.add_argument('--num-seeds', type=int, default=1,
                         help='Number of random seeds to run per configuration')
     parser.add_argument('--seed', type=int, default=42, help='Base random seed')
@@ -177,7 +178,7 @@ def main():
                                     batch_size=args.batch_size,
                                     data_percentage=args.data_percentage,
                                     non_iid=non_iid,
-                                    server_train_fraction=0.1
+                                    server_train_fraction=args.server_train_fraction
                                 )
                                 print("Data loading complete.", file=sys.stderr)
 
@@ -238,6 +239,8 @@ def main():
 
     print(f"\n--- Experiment Complete ---", file=sys.stderr)
     print(f"Results saved to {results_filename}", file=sys.stderr)
+    if not all_results or any('error' in result for result in all_results):
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

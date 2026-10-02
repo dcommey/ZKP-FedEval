@@ -54,11 +54,23 @@ class CNN_HAR(nn.Module):
         x = self.fc2(x)
         return x
 
+class MLP_HAR(nn.Module):
+    """Classifier for the official HAR 561-dimensional feature vectors."""
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.Sequential(nn.Linear(561, 256), nn.ReLU(), nn.Dropout(0.5),
+                                    nn.Linear(256, 128), nn.ReLU(), nn.Dropout(0.3),
+                                    nn.Linear(128, 6))
+
+    def forward(self, x):
+        return self.layers(x)
+
+
 def get_model(dataset_name):
     """Helper function to get the appropriate model."""
     if dataset_name.lower() == 'mnist':
         return CNN_MNIST()
     elif dataset_name.lower() == 'har':
-        return CNN_HAR()
+        return MLP_HAR()
     else:
         raise ValueError(f"Unknown dataset name: {dataset_name}")

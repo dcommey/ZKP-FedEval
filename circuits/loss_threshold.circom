@@ -29,6 +29,10 @@ template LossThresholdVerifier(precision_bits) { // e.g., 64 bits for fixed-poin
     // Verify: calculated_loss < threshold
     // Use LessThan component from circomlib
     component lt = LessThan(precision_bits);
+    component lossRange = Num2Bits(precision_bits);
+    component thresholdRange = Num2Bits(precision_bits);
+    lossRange.in <== calculated_loss;
+    thresholdRange.in <== threshold;
     lt.in[0] <== calculated_loss;
     lt.in[1] <== threshold;
 

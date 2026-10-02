@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "checks": [
+    {
+      "name": "unapproved_model_refused",
+      "passed": true
+    },
+    {
+      "name": "unapproved_cutoff_refused",
+      "passed": true
+    },
+    {
+      "name": "unregistered_root_refused",
+      "passed": true
+    },
+    {
+      "name": "first_approved_query_allowed",
+      "passed": true
+    },
+    {
+      "name": "same_model_repeat_refused",
+      "passed": true
+    },
+    {
+      "name": "different_approved_model_same_batch_refused",
+      "passed": true
+    },
+    {
+      "name": "different_model_after_restart_refused",
+      "passed": true
+    },
+    {
+      "name": "resalted_same_batch_refused",
+      "passed": true
+    },
+    {
+      "name": "new_enrolled_batch_allowed",
+      "passed": true
+    },
+    {
+      "name": "configuration_mutation_cannot_add_model",
+      "passed": true
+    },
+    {
+      "name": "configuration_mutation_cannot_replace_root",
+      "passed": true
+    },
+    {
+      "name": "legacy_ledger_fails_closed",
+      "passed": true
+    },
+    {
+      "name": "stale_client_instances_preserve_consumption",
+      "passed": true
+    },
+    {
+      "name": "concurrent_duplicate_refused",
+      "passed": true
+    },
+    {
+      "name": "verifier_duplicate_survives_restart",
+      "passed": true
+    },
+    {
+      "name": "invalid_proof_refused",
+      "passed": true
+    },
+    {
+      "name": "stale_verifier_instances_preserve_acceptance",
+      "passed": true
+    }
+  ],
+  "guarantee": "one attempted evaluation per stable enrolled batch, across approved models and roots; serialized trusted client service",
+  "negative_checks": 15,
+  "positive_controls": 2
+}

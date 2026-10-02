@@ -23,7 +23,7 @@ def download_and_extract_har(url, dest_path):
         return os.path.join(dest_path, 'UCI HAR Dataset')
 
     print(f"Downloading HAR dataset from {url}...")
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, timeout=(10,120))
     response.raise_for_status() # Raise an exception for bad status codes
 
     try:
@@ -54,7 +54,7 @@ def load_mnist(data_dir='./data'):
     ])
 
     train_dataset = datasets.MNIST(data_dir, train=True, download=True, transform=transform)
-    test_dataset = datasets.MNIST(data_dir, train=False, transform=transform)
+    test_dataset = datasets.MNIST(data_dir, train=False, download=True, transform=transform)
     
     return train_dataset, test_dataset
 
@@ -70,10 +70,10 @@ class HARDataset(Dataset):
             train: If True, load training data; otherwise load test data
         """
         subset = 'train' if train else 'test'
-        data_path = os.path.join(data_dir, 'UCI HAR Dataset', f'X_{subset}.txt')
-        labels_path = os.path.join(data_dir, 'UCI HAR Dataset', f'y_{subset}.txt')
+        data_path = os.path.join(data_dir, 'UCI HAR Dataset', subset, f'X_{subset}.txt')
+        labels_path = os.path.join(data_dir, 'UCI HAR Dataset', subset, f'y_{subset}.txt')
         
-        self.features = pd.read_csv(data_path, delim_whitespace=True).values
+        self.features = pd.read_csv(data_path, sep=r'\s+', header=None).values
         self.labels = pd.read_csv(labels_path, header=None).values.reshape(-1) - 1
         self.features = torch.FloatTensor(self.features)
         self.labels = torch.LongTensor(self.labels)

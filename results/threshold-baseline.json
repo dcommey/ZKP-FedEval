@@ -1,0 +1,78 @@
+{
+  "measurements": [
+    {
+      "witness_s": 0.004743125000000021,
+      "prove_s": 0.10318770800000004,
+      "verify_s": 0.007337208999999916,
+      "proof_json_bytes": 721,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.00488641599999994,
+      "prove_s": 0.09889783299999999,
+      "verify_s": 0.006299250000000029,
+      "proof_json_bytes": 723,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.0037304999999998928,
+      "prove_s": 0.09829075,
+      "verify_s": 0.006416375000000017,
+      "proof_json_bytes": 724,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.004332165999999916,
+      "prove_s": 0.09178925000000004,
+      "verify_s": 0.005322541999999999,
+      "proof_json_bytes": 725,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.003523458000000005,
+      "prove_s": 0.09502541699999995,
+      "verify_s": 0.006488707999999974,
+      "proof_json_bytes": 723,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.007235125000000039,
+      "prove_s": 0.10010062500000015,
+      "verify_s": 0.006603500000000167,
+      "proof_json_bytes": 724,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.003925167000000102,
+      "prove_s": 0.11031908399999997,
+      "verify_s": 0.007168957999999975,
+      "proof_json_bytes": 725,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.0042200000000000275,
+      "prove_s": 0.09387208299999998,
+      "verify_s": 0.0055709170000000086,
+      "proof_json_bytes": 723,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.0041191670000000616,
+      "prove_s": 0.09237079200000016,
+      "verify_s": 0.006658082999999806,
+      "proof_json_bytes": 719,
+      "public_json_bytes": 62
+    },
+    {
+      "witness_s": 0.0031576250000000528,
+      "prove_s": 0.09590920800000004,
+      "verify_s": 0.008958667000000104,
+      "proof_json_bytes": 723,
+      "public_json_bytes": 62
+    }
+  ],
+  "guarantee": "supplied-loss only; zero fabricated loss accepted without evaluating a model",
+  "fabricated_loss_accepted": true,
+  "changed_nonce_accepted": false,
+  "changed_model_hash_accepted": false
+}

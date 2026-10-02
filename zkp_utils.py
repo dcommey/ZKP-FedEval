@@ -13,6 +13,7 @@ import math
 import sys
 import re
 import shutil # Import shutil for directory removal
+import secrets
 
 # Directory and file configuration
 ZKP_ARTIFACTS_DIR = './zkp_artifacts'
@@ -69,12 +70,17 @@ def to_fixed_point(value):
     Convert float to fixed-point representation suitable for ZKP circuit.
     Warns if value exceeds circuit's precision range.
     """
-    scaled_value = value * FIXED_POINT_SCALE
-    max_val = 2**(CIRCUIT_PRECISION_BITS - 1) - 1
-    min_val = -2**(CIRCUIT_PRECISION_BITS - 1)
+    scale = 10 ** int(os.environ.get('ZKP_PRECISION', 6))
+    if not math.isfinite(value) or value < 0:
+        raise ValueError('Loss values must be finite and nonnegative')
+    scaled_value = value * scale
+    max_val = 2**CIRCUIT_PRECISION_BITS - 1
+    min_val = 0
     if not (min_val <= scaled_value <= max_val):
         print(f"Warning: Value {value} scaled to {scaled_value} might be outside expected {CIRCUIT_PRECISION_BITS}-bit range [{min_val}, {max_val}]", file=sys.stderr)
-    return str(int(round(scaled_value)))
+    if scaled_value > max_val:
+        raise ValueError('Fixed-point value exceeds supported range')
+    return str(math.floor(scaled_value))
 
 def string_to_int(s, max_bits=253):
     """
@@ -130,7 +136,7 @@ def setup_zkp(circuit_path="circuits/loss_threshold.circom", setup_dir="zkp_setu
 
         # Corrected compile command: specify output directory only once AND add library path
         compile_command = [
-            "circom", circuit_path,
+            shutil.which("circom") or os.path.abspath("node_modules/.bin/circom2"), circuit_path,
             "--r1cs",   # Generate R1CS
             "--wasm",   # Generate WASM
             "--sym",    # Generate SYM
@@ -206,7 +212,7 @@ def setup_zkp(circuit_path="circuits/loss_threshold.circom", setup_dir="zkp_setu
         # Contribute to Phase 2 (single local contribution for reproducibility).
         run_command([
             "snarkjs", "zkey", "contribute", zkey_initial_path, pkey_path,
-            "-v", "-e=\"some random text\""
+            "-v", "-e=" + secrets.token_hex(64)
         ])
 
         # Export verification key
@@ -424,8 +430,15 @@ def prepare_circuit_inputs(local_loss, threshold, nonce, model_hash):
     """
     try:
         # Scale and convert floats to integers
-        scaled_loss_str = str(int(local_loss * SCALE_FACTOR))
-        scaled_threshold_str = str(int(threshold * SCALE_FACTOR))
+        scale = 10 ** int(os.environ.get('ZKP_PRECISION', 6))
+        if not math.isfinite(local_loss) or not math.isfinite(threshold):
+            raise ValueError("Loss and threshold must be finite")
+        scaled_loss = math.floor(local_loss * scale)
+        scaled_threshold = math.floor(threshold * scale)
+        if not (0 <= scaled_loss < 2**64 and 0 <= scaled_threshold < 2**64):
+            raise ValueError("Loss and threshold must fit unsigned 64-bit values")
+        scaled_loss_str = str(scaled_loss)
+        scaled_threshold_str = str(scaled_threshold)
 
         # Convert hex model hash and nonce to integer representation suitable for circuit
         # Assuming model_hash is hex string, nonce is alphanumeric

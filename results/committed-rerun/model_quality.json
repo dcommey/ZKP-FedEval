@@ -1,0 +1,74 @@
+[
+  {
+    "dataset": "mnist",
+    "seed": 42,
+    "train_s": 0.1927685420087073,
+    "test_accuracy": 0.7725,
+    "test_mse": 0.0515416588041,
+    "float_mse": 0.05133729912435001,
+    "mse_quantization_error": 0.00020435967974998664,
+    "train_samples": 18000,
+    "test_samples": 10000,
+    "model_sha256": "405c6ac42f28c1967cdb42027ce02fb30cb216ecfa76abc32be382bda44ee8ac"
+  },
+  {
+    "dataset": "mnist",
+    "seed": 43,
+    "train_s": 0.1298478749813512,
+    "test_accuracy": 0.7682,
+    "test_mse": 0.0518341841045,
+    "float_mse": 0.05153548429064367,
+    "mse_quantization_error": 0.00029869981385632904,
+    "train_samples": 18000,
+    "test_samples": 10000,
+    "model_sha256": "e3a7a1e6e44f73faebffc1fdffe5cc58a160ffe7608ae36054b3867a74474296"
+  },
+  {
+    "dataset": "mnist",
+    "seed": 44,
+    "train_s": 0.10650266701122746,
+    "test_accuracy": 0.7743,
+    "test_mse": 0.0514691915437,
+    "float_mse": 0.051211812500741874,
+    "mse_quantization_error": 0.0002573790429581252,
+    "train_samples": 18000,
+    "test_samples": 10000,
+    "model_sha256": "91d76275f7fc7b0c6acd5a4052d9a3bd7d045082eb1d0ee1802c104c3a565e94"
+  },
+  {
+    "dataset": "har",
+    "seed": 42,
+    "train_s": 0.01843395800096914,
+    "test_accuracy": 0.838479809976247,
+    "test_mse": 0.03175604720597217,
+    "float_mse": 0.031497187779984046,
+    "mse_quantization_error": 0.0002588594259881269,
+    "train_samples": 2205,
+    "test_samples": 2947,
+    "model_sha256": "fb8f5bb4ea881be569e84be26164137b057447a31b735a86c8ef5cca7374aa1a"
+  },
+  {
+    "dataset": "har",
+    "seed": 43,
+    "train_s": 0.009357999981148168,
+    "test_accuracy": 0.8622327790973872,
+    "test_mse": 0.030888685471326775,
+    "float_mse": 0.030489304312947555,
+    "mse_quantization_error": 0.0003993811583792202,
+    "train_samples": 2205,
+    "test_samples": 2947,
+    "model_sha256": "4f4d5b493f2e0e55f001c99ed3427cebf9e0ce087b82f4c369a5e1f8a6f010e6"
+  },
+  {
+    "dataset": "har",
+    "seed": 44,
+    "train_s": 0.007548707973910496,
+    "test_accuracy": 0.8513742789277231,
+    "test_mse": 0.03163622967085171,
+    "float_mse": 0.031399178279553804,
+    "mse_quantization_error": 0.0002370513912979058,
+    "train_samples": 2205,
+    "test_samples": 2947,
+    "model_sha256": "7216a62e2c43e860f35c34210e41582702db9fca87057e46d76a42cb800b1e79"
+  }
+]

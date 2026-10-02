@@ -1,0 +1,49 @@
+{
+  "started_utc": "2026-10-01T19:08:29Z",
+  "python": "3.14.2 (main, Dec  5 2025, 16:49:16) [Clang 17.0.0 (clang-1700.4.4.1)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "processor": "Apple M6",
+  "torch": "2.14.1",
+  "numpy": "2.5.3",
+  "configuration": {
+    "datasets": [
+      "mnist",
+      "har"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "clients": [
+      5,
+      10
+    ],
+    "thresholds": [
+      0.025,
+      0.05,
+      0.1
+    ],
+    "distributions": [
+      "iid",
+      "label_sorted"
+    ],
+    "verify_counts": [
+      50,
+      100,
+      500,
+      1000
+    ],
+    "prepare_only": false
+  },
+  "batch_size": 8,
+  "dimensions": 16,
+  "scale": 100,
+  "training": "ridge alpha=1.0; PCA train-only; 30% official training split",
+  "provisioning": "simulated trusted registry; disjoint ordered test batches per configuration",
+  "privacy": "local losses retained only for research analysis; not protocol messages",
+  "completed_utc": "2026-10-01T19:36:05Z",
+  "outcomes": 540,
+  "proof_tasks": 540
+}

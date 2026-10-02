@@ -1,0 +1,11 @@
+{
+  "ceremony": "single-party research-only; not a production multiparty setup",
+  "optimization": "O2",
+  "nonlinear_constraints": 18282,
+  "public_inputs": 174,
+  "public_outputs": 2,
+  "circuits/committed_linear.circom": "2e812ff74293466f896dbac1c42e96e02bdad83d571bc6dba5a5619d96e6eae7",
+  "zkp_setup/committed/committed_linear.r1cs": "a113af6b741334a5342e5ae2fbb6880e62f6302ad38312156f32891a20ea3cf1",
+  "zkp_artifacts/pot15_final.ptau": "b434570e3777be93edd3cb235116325a295b88e43ace366af54de9b000317cae",
+  "zkp_setup/committed/committed_linear_final.zkey": "6ed4c611e9145d3be5cf201b2dba345592f643af55dff052d9ba09e799386ba7"
+}
